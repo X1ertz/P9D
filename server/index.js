@@ -11,7 +11,7 @@ app.use(cors());
 // Serve React build in production
 const clientBuild = path.join(__dirname, '..', 'client', 'dist');
 app.use(express.static(clientBuild));
-app.get('*', (req, res) => res.sendFile(path.join(clientBuild, 'index.html')));
+app.get('/{*splat}', (req, res) => res.sendFile(path.join(clientBuild, 'index.html')));
 
 const server = http.createServer(app);
 const io = new Server(server, { cors: { origin: "*", methods: ["GET", "POST"] } });
